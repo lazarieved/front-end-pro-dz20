@@ -3,19 +3,22 @@
 // 3) Всем четным div добавить текст "Я четный элемент №(добавить сюда номер по порядку)"
 // 4) Всем нечетным div добавить текст "Я нечетный элемент №(добавить сюда номер по порядку)"
 
-for (var i=1; i<=12; i++){
-    var count = i;
-    if(!(i%2)){
-        var newDiv=document.createElement("div");
-        document.body.appendChild(newDiv);
-        newDiv.innerText = 'Я четный элемент №' + count;
+var divLists = document.body.getElementsByTagName('div');
+
+function counter(x){
+    var count = x;
+    return function(){
+        return count++;
+    };
+}
+
+for (i = divLists.length - 1; i >= 0; i--){
+    var countMain = counter(i + 1);
+    if(i%2){
+        divLists[i].innerText = 'Я четный элемент №' + countMain() / 2;
     } else {
-        var newDiv=document.createElement("div");
-        document.body.appendChild(newDiv);
-        newDiv.innerText = 'Я нечетный элемент №' + count;
+        divLists[i].innerText = 'Я нечетный элемент №' + (countMain() + 1) / 2;
     }
 }
 
-var searchDivs = document.body.getElementsByTagName('div');
-
-console.dir(searchDivs);
+console.dir(divLists);
