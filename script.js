@@ -5,19 +5,12 @@
 
 var divLists = document.body.getElementsByTagName('div');
 
-function counter(x){
-    var count = x;
-    return function(){
-        return count++;
-    };
-}
-
 for (i = divLists.length - 1; i >= 0; i--){
-    var countMain = counter(i + 1);
+    var count = i + 1;
     if(i%2){
-        divLists[i].innerText = 'Я четный элемент №' + countMain() / 2;
+        divLists[i].innerText = 'Я четный элемент №' + count / 2;
     } else {
-        divLists[i].innerText = 'Я нечетный элемент №' + (countMain() + 1) / 2;
+        divLists[i].innerText = 'Я нечетный элемент №' + (count + 1) / 2;
     }
 }
 
